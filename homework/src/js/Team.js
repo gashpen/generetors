@@ -17,16 +17,9 @@ export default class Team {
     ];
   }
 
-  [Symbol.iterator]() {
-    let index = -1;
-    const members = this.enemyTeam;
-    return {
-      next() {
-        if (index < members.length) {
-          return { value: members[index += 1], done: false };
-        }
-        return { done: true };
-      },
-    };
+  * [Symbol.iterator]() {
+    for (const member of this.enemyTeam) {
+      yield member;
+    }
   }
 }
